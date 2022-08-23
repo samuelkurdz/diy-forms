@@ -1,0 +1,23 @@
+<label class="block">
+  <span class="text-gray-700 font-semibold">{{label}}</span>
+  <input
+    type="text"
+    class="mt-1.5 py-2.5 px-2 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 hover:bg-gray-200 transition-colors"
+    [placeholder]="placeholder"
+    [formControl]="FormControl"
+  />
+</label>
+<div *ngIf="FormControl.invalid && FormControl.errors && isFormSubmitted">
+  <span *ngIf="FormControl.errors['required']" class="text-red-500 text-xs">
+    {{label}} is required
+  </span>
+  <span *ngIf="FormControl.errors['email']" class="text-red-500 text-xs">
+    {{label}} is an invalid email address
+  </span>
+  <span *ngIf="FormControl.errors['minlength'] && FormControl.errors['minlength'].actualLength < FormControl.errors['minlength'].requiredLength" class="text-red-500 text-xs">
+    {{label}} must be at least {{FormControl.errors['minlength'].requiredLength}} characters long
+  </span>
+  <span *ngIf="FormControl.errors['minlength'] && FormControl.errors['minlength'].actualLength > FormControl.errors['minlength'].requiredLength" class="text-red-500 text-xs">
+    {{label}} must be at most {{FormControl.errors['minlength'].requiredLength}} characters long
+  </span>
+</div>

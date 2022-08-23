@@ -23,3 +23,19 @@ h1, h2, h3, h4, h5, h6 {
 a {
   @apply text-green-600 hover:underline;
 }
+
+[type="text"]:focus,
+[type="email"]:focus,
+[type="url"]:focus,
+[type="password"]:focus,
+[type="number"]:focus,
+[type="date"]:focus,
+[type="datetime-local"]:focus,
+[type="month"]:focus,
+[type="search"]:focus,
+[type="tel"]:focus,
+[multiple]:focus,
+textarea:focus,
+select:focus {
+  @apply focus:outline-0 focus:ring-0
+}

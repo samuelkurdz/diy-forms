@@ -14,7 +14,7 @@ interface SignupFormInterface {
 })
 export class SignupComponent implements OnInit {
 
-  signUpForm!: FormGroup<SignupFormInterface>;
+  signUpForm: FormGroup<SignupFormInterface>;
 
   constructor(
     private formBuilder: FormBuilder
@@ -31,5 +31,10 @@ export class SignupComponent implements OnInit {
       password: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(8)] }),
       confirmPassword: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(8)] }),
     });
+  }
+
+  signUp(): void {
+    console.log(this.signUpForm.value);
+    console.log(this.signUpForm.controls.confirmPassword.errors);
   }
 }

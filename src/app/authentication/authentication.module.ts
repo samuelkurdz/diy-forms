@@ -5,7 +5,8 @@ import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthContainerComponent } from './auth-container/auth-container.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TextInputComponent } from '../components/text-input/text-input.component';
 
 
 @NgModule({
@@ -16,8 +17,10 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
-    AuthenticationRoutingModule
+    AuthenticationRoutingModule,
+    TextInputComponent
   ]
 })
 export class AuthenticationModule { }

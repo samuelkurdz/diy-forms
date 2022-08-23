@@ -3,3 +3,10 @@
   <p>Already have an account?</p>
   <a routerLink="/auth/login">Login</a>
 </div>
+
+<form [formGroup]="signUpForm" class="mt-10 space-y-8" (submit)="signUp()" #templateForm="ngForm">
+  <diy-text-input label="Email" placeholder="Email" [FormControl]="signUpForm.controls.email" [isFormSubmitted]="templateForm.submitted"></diy-text-input>
+  <diy-text-input label="Password" placeholder="Password" [FormControl]="signUpForm.controls.password" [isFormSubmitted]="templateForm.submitted"></diy-text-input>
+  <diy-text-input label="Confirm Password" placeholder="Confirm Password" [FormControl]="signUpForm.controls.confirmPassword" [isFormSubmitted]="templateForm.submitted"></diy-text-input>
+  <button class="w-full py-2.5 rounded-md bg-indigo-600 hover:bg-indigo-700 transition text-white">Sign Up</button>
+</form>
