@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormErrorComponent } from '../form-error/form-error.component';
+import { Subject, takeUntil } from 'rxjs';
 
 interface InputInterface {
   label: string;
@@ -11,24 +13,41 @@ interface InputInterface {
 @Component({
   selector: 'diy-text-input',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, FormErrorComponent],
   templateUrl: './text-input.component.html',
   styleUrls: ['./text-input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextInputComponent {
+export class TextInputComponent implements OnInit, OnDestroy {
 
-  @Input() isFormSubmitted: boolean;
-  @Input() label: string = "";
-  @Input() placeholder: string = "";
-  @Input() FormControl: FormControl<string>;
+  @Input() iFormGroup: FormGroup;
+  @Input() iFormControlName: string;
+  @Input() iId: string | null = null;
 
-  constructor() { }
+  destroy$: Subject<boolean> = new Subject<boolean>();
+  formControl: AbstractControl;
+  get showError(): boolean {
+    return this.formControl.invalid && this.formControl.touched;
+  }
 
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   console.log(changes);
-  // }
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef
+  ) { }
 
+  ngOnInit() {
+    this.formControl = this.iFormGroup.controls[this.iFormControlName];
 
+    // without manual change detection, the error component will not know about errors
+    this.formControl.statusChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: () => this.changeDetectorRef.detectChanges()
+      });
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 
 }

@@ -1,1 +1,11 @@
-<p>login works!</p>
+<h3 class="text-3xl">Login</h3>
+<div class="flex gap-2 text-lg mb-8">
+  <p>Don't have an account?</p>
+  <a routerLink="/auth/signup">Sign up</a>
+</div>
+
+<diy-iform
+  [iFormData]="loginFormControls"
+  (formValues)="login($event)"
+  (isIFormValid)="isFormValid = $event"
+></diy-iform>

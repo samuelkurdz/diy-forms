@@ -1,40 +1,64 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { IFormData } from '@core';
 
-interface SignupFormInterface {
-  email: FormControl<string>;
-  password: FormControl<string>;
-  confirmPassword: FormControl<string>;
-}
+// interface SignupFormInterface {
+//   email: FormControl<string>;
+//   password: FormControl<string>;
+//   confirmPassword: FormControl<string>;
+// }
 
 @Component({
   selector: 'diy-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent {
 
-  signUpForm: FormGroup<SignupFormInterface>;
+  isFormValid: boolean;
+  signUpFormControls: IFormData = {
+    controls: [
+      {
+        name: "email",
+        label: "Email",
+        value: "",
+        type: "email",
+        validators: {
+          "required": true,
+          "email": true,
+        }
+      },
+      {
+        name: "password",
+        label: "Password",
+        value: "",
+        type: "password",
+        validators: {
+          "required": true,
+          "minLength": 8,
+        }
+      },
+      {
+        name: "confirmPassword",
+        label: "Confirm Password",
+        value: "",
+        type: "password",
+        validators: {
+          "required": true,
+          "minLength": 8,
+        }
+      },
+    ],
+    formValidators: {
+      passwordMatch: true,
+    }
+  };
 
-  constructor(
-    private formBuilder: FormBuilder
-  ) { }
 
-  ngOnInit(): void {
-    this.initializeSignupForm();
-  }
+  constructor( ) { }
 
-
-  initializeSignupForm(): void {
-    this.signUpForm = this.formBuilder.group({
-      email: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.email] }),
-      password: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(8)] }),
-      confirmPassword: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(8)] }),
-    });
-  }
-
-  signUp(): void {
-    console.log(this.signUpForm.value);
-    console.log(this.signUpForm.controls.confirmPassword.errors);
+  signUp(signUpValues: Record<string, any>): void {
+    console.log(signUpValues);
+    console.log(this.isFormValid);
+    // console.log(this.signUpForm.controls.confirmPassword.errors);
   }
 }

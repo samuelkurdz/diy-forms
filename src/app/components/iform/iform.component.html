@@ -1,0 +1,38 @@
+<form
+  class="space-y-4"
+  *ngIf="isFormReady"
+  [formGroup]="iFormGroup"
+  (ngSubmit)="onSubmit()"
+  #iFormGroupRef="ngForm"
+>
+  <ng-container *ngFor="let control of iFormData?.controls">
+    <div class="">
+      <diy-form-label
+        [iFormGroup]="iFormGroup"
+        [iFor]="control.name"
+        [iTitle]="control.name"
+        [iFormControlName]="control.name"
+      ></diy-form-label>
+      <diy-text-input
+        [iFormGroup]="iFormGroup"
+        [iId]="control.name"
+        [iFormControlName]="control.name"
+      >
+      </diy-text-input>
+    </div>
+  </ng-container>
+
+  <!-- HANDLING FORMGROUP ERRORS -->
+  <ng-container *ngIf="iFormGroup.errors && iFormGroupRef.submitted">
+    <!-- {{ iFormGroup.errors | json }} -->
+    <span
+      role="alert"
+      class="text-red-600 text-xs block"
+      *ngIf="iFormGroup.errors['passwordMismatch']"
+    >
+      Passwords do not match
+    </span>
+  </ng-container>
+
+  <button type="submit">Submit</button>
+</form>

@@ -1,0 +1,35 @@
+<span
+  role="alert"
+  *ngIf="!iValid && (iPrintErrorsByDefault || (iTouched && iDirty))"
+  [attr.id]="iId"
+  [ngSwitch]="error"
+>
+  <ng-container *ngSwitchCase="'required'">Field is required.</ng-container>
+  <ng-container *ngSwitchCase="'requiredTrue'">Field is required.</ng-container>
+  <ng-container *ngSwitchCase="'min'">
+    Minimum value is {{ errorData["min"] }}.</ng-container
+  >
+  <ng-container *ngSwitchCase="'max'">
+    Maximum value is {{ errorData["max"] }}.</ng-container
+  >
+  <ng-container *ngSwitchCase="'email'">Email is not valid.</ng-container>
+  <ng-container *ngSwitchCase="'minlength'">
+    Min length is {{ errorData["requiredLength"] }}.</ng-container
+  >
+  <ng-container *ngSwitchCase="'maxlength'">
+    Max length is {{ errorData["requiredLength"] }}.</ng-container
+  >
+  <ng-container *ngSwitchCase="'isTimeString'">Is not valid time.</ng-container>
+  <ng-container *ngSwitchCase="'isTime'">Is not valid time.</ng-container>
+  <ng-container *ngSwitchCase="'isNumber'">Is not a valid number.</ng-container>
+  <ng-container *ngSwitchCase="'isBiggerThan'">
+    Must be bigger than {{ errorData["biggerThan"] }}.
+  </ng-container>
+  <ng-container *ngSwitchCase="'isInDateRange'">
+    Must be within range {{ errorData["from"] | date: "dd MMM yy" }} -
+    {{ errorData["to"] | date: "dd MMM yy" }}.
+  </ng-container>
+  <ng-container *ngSwitchCase="'pattern'">Is not a valid pattern.</ng-container>
+  <!-- NO MATCHES -->
+  <ng-container *ngSwitchDefault>Field is not valid.</ng-container>
+</span>

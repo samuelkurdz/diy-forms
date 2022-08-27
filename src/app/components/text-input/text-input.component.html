@@ -1,23 +1,51 @@
-<label class="block">
-  <span class="text-gray-700 font-semibold">{{label}}</span>
+<ng-container [formGroup]="iFormGroup">
   <input
+    [attr.id]="iId"
     type="text"
-    class="mt-1.5 py-2.5 px-2 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 hover:bg-gray-200 transition-colors"
-    [placeholder]="placeholder"
-    [formControl]="FormControl"
+    [formControlName]="iFormControlName"
+    class="mt-0.5 py-2.5 px-2 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 hover:bg-gray-200 transition-colors"
   />
-</label>
-<div *ngIf="FormControl.invalid && FormControl.errors && isFormSubmitted">
-  <span *ngIf="FormControl.errors['required']" class="text-red-500 text-xs">
-    {{label}} is required
+</ng-container>
+
+<diy-form-error
+  *ngIf="showError"
+  [iErrors]="formControl.errors"
+  [iValid]="formControl.valid"
+  [iTouched]="formControl.touched"
+  [iDirty]="formControl.dirty"
+></diy-form-error>
+
+
+
+<!-- <ng-container
+  *ngIf="formControl.dirty && formControl.invalid && formControl.errors"
+>
+  <span *ngIf="formControl.errors['required']" class="text-red-500 text-xs">
+    This is required
   </span>
-  <span *ngIf="FormControl.errors['email']" class="text-red-500 text-xs">
-    {{label}} is an invalid email address
+  <span *ngIf="formControl.errors['email']" class="text-red-500 text-xs">
+    This is an invalid email address
   </span>
-  <span *ngIf="FormControl.errors['minlength'] && FormControl.errors['minlength'].actualLength < FormControl.errors['minlength'].requiredLength" class="text-red-500 text-xs">
-    {{label}} must be at least {{FormControl.errors['minlength'].requiredLength}} characters long
+  <span
+    *ngIf="
+      formControl.errors['minlength'] &&
+      formControl.errors['minlength'].actualLength <
+        formControl.errors['minlength'].requiredLength
+    "
+    class="text-red-500 text-xs"
+  >
+    This must be at least
+    {{ formControl.errors["minlength"].requiredLength }} characters long
   </span>
-  <span *ngIf="FormControl.errors['minlength'] && FormControl.errors['minlength'].actualLength > FormControl.errors['minlength'].requiredLength" class="text-red-500 text-xs">
-    {{label}} must be at most {{FormControl.errors['minlength'].requiredLength}} characters long
+  <span
+    *ngIf="
+      formControl.errors['minlength'] &&
+      formControl.errors['minlength'].actualLength >
+        formControl.errors['minlength'].requiredLength
+    "
+    class="text-red-500 text-xs"
+  >
+    This must be at most
+    {{ formControl.errors["minlength"].requiredLength }} characters long
   </span>
-</div>
+</ng-container> -->
