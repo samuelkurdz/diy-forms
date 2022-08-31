@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DeepValuePipe } from './core/pipes/deep-value.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DeepValuePipe
   ],
   imports: [
     BrowserModule,

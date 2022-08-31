@@ -11,9 +11,10 @@ export interface IFormControl {
   name: string;
   label: string;
   value: string;
-  type: string;
-  // options?: IFormControlOptions;
+  placeholder?: string;
+  type: "email" | "password" | "text" | "number";
   validators: IFormValidators;
+  // options?: IFormControlOptions;
 }
 
 export interface IFormValidators {

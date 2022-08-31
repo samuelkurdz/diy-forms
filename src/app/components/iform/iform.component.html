@@ -10,12 +10,13 @@
       <diy-form-label
         [iFormGroup]="iFormGroup"
         [iFor]="control.name"
-        [iTitle]="control.name"
+        [iTitle]="control.label"
         [iFormControlName]="control.name"
       ></diy-form-label>
       <diy-text-input
-        [iFormGroup]="iFormGroup"
         [iId]="control.name"
+        [iType]="control.type"
+        [iFormGroup]="iFormGroup"
         [iFormControlName]="control.name"
       >
       </diy-text-input>

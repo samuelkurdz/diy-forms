@@ -6,6 +6,10 @@
 
 <diy-iform
   [iFormData]="signUpFormControls"
-  (formValues)="signUp($event)"
+  (oFormSubmit)="signUp($event)"
   (isIFormValid)="isFormValid = $event"
 ></diy-iform>
+
+
+<diy-dropdown></diy-dropdown>
+

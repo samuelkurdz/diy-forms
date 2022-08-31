@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormInputComponent } from './text-input.component';
+import { ListboxComponent } from './listbox.component';
 
-describe('TextInputComponent', () => {
-  let component: FormInputComponent;
-  let fixture: ComponentFixture<FormInputComponent>;
+describe('ListboxComponent', () => {
+  let component: ListboxComponent;
+  let fixture: ComponentFixture<ListboxComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ FormInputComponent ]
+      imports: [ ListboxComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FormInputComponent);
+    fixture = TestBed.createComponent(ListboxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

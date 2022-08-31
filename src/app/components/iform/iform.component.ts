@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, In
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { IFormControl, IFormData, matchingControlsValidator } from '@core';
-import { TextInputComponent } from '../text-input/text-input.component';
+import { FormInputComponent } from '../text-input/text-input.component';
 import { FormLabelComponent } from '../form-label/form-label.component';
 
 @Component({
   selector: 'diy-iform',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TextInputComponent, FormLabelComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, FormInputComponent, FormLabelComponent],
   templateUrl: './iform.component.html',
   styleUrls: ['./iform.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,7 +16,7 @@ import { FormLabelComponent } from '../form-label/form-label.component';
 export class IformComponent implements OnChanges {
   @Input() iFormData: IFormData;
   @Output() isIFormValid = new EventEmitter<boolean>();
-  @Output() formValues = new EventEmitter<Record<string, any>>();
+  @Output() oFormSubmit = new EventEmitter<Record<string, any>>();
 
   isFormReady: boolean;
   public iFormGroup: FormGroup = this.fb.group({});
@@ -41,15 +41,19 @@ export class IformComponent implements OnChanges {
       );
     };
 
-    if (this.iFormData.formValidators && this.iFormData.formValidators['passwordMatch']) {
-      this.iFormGroup.addValidators(matchingControlsValidator('password', 'confirmPassword'));
-      this.iFormGroup.updateValueAndValidity();
-    }
+    this.processFormGroupValidators();
 
     this.isFormReady = true;
   }
 
-  processControlValidators(control: IFormControl): ValidatorFn[] {
+  private processFormGroupValidators() {
+    if (this.iFormData.formValidators && this.iFormData.formValidators['passwordMatch']) {
+      this.iFormGroup.addValidators(matchingControlsValidator('password', 'confirmPassword'));
+      this.iFormGroup.updateValueAndValidity();
+    }
+  }
+
+  private processControlValidators(control: IFormControl): ValidatorFn[] {
     const validatorsToAdd = [];
     for (const [key, value] of Object.entries(control.validators)) {
       switch (key) {
@@ -97,6 +101,6 @@ export class IformComponent implements OnChanges {
 
   onSubmit() {
     this.isIFormValid.emit(this.iFormGroup.valid);
-    this.formValues.emit(this.iFormGroup.value);
+    this.oFormSubmit.emit(this.iFormGroup.value);
   }
 }

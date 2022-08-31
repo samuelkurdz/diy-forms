@@ -1,11 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IFormData } from '@core';
-
-// interface SignupFormInterface {
-//   email: FormControl<string>;
-//   password: FormControl<string>;
-//   confirmPassword: FormControl<string>;
-// }
 
 @Component({
   selector: 'diy-signup',
@@ -59,6 +53,5 @@ export class SignupComponent {
   signUp(signUpValues: Record<string, any>): void {
     console.log(signUpValues);
     console.log(this.isFormValid);
-    // console.log(this.signUpForm.controls.confirmPassword.errors);
   }
 }

@@ -6,6 +6,6 @@
 
 <diy-iform
   [iFormData]="loginFormControls"
-  (formValues)="login($event)"
+  (oFormSubmit)="login($event)"
   (isIFormValid)="isFormValid = $event"
 ></diy-iform>

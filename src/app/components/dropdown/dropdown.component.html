@@ -1,0 +1,19 @@
+<div>
+  <button
+    type="button"
+    tabindex="-1"
+    (click)="isListOpen = !isListOpen"
+    class="py-2 px-3 w-full bg-indigo-600 text-white text-sm font-bold rounded-md shadow focus:outline-none"
+  >
+    {{ selectedItem?.label || iPlaceholder }}
+  </button>
+</div>
+<diy-listbox
+  [iOpen]="isListOpen"
+  [iListItems]="items"
+  [iLoadingItems]="true"
+  [selectedItem]="selectedItem"
+  (oCloseList)="isListOpen = false"
+  (oItemSelect)="selectedItem = $event"
+  [iMessageNothingFound]="'No Items to select from'"
+></diy-listbox>

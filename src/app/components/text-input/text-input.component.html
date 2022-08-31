@@ -1,7 +1,10 @@
 <ng-container [formGroup]="iFormGroup">
   <input
     [attr.id]="iId"
-    type="text"
+    [type]="iType"
+    [attr.disabled]="iDisabled ? 'disabled' : null"
+    [attr.aria-invalid]="showError"
+    [attr.placeholder]="iPlaceholder"
     [formControlName]="iFormControlName"
     class="mt-0.5 py-2.5 px-2 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 hover:bg-gray-200 transition-colors"
   />
