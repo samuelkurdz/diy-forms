@@ -1,19 +1,11 @@
 <ul
-  #listBoxContainer
+  role="listbox"
+  #listBox
   *ngIf="iOpen"
+  [attr.id]="iId + '-listbox'"
   class="py-2 px-2 space-y-0.5 font-medium bg-white text-slate-700 border border-slate-300 rounded-md shadow-md max-h-40 overflow-y-auto"
 >
-  <ng-container *ngFor="let item of iListItems">
-    <li
-      class="py-1.5 px-2 cursor-pointer hover:bg-slate-100 rounded"
-      [ngClass]="{ 'selected': selectedItem?.value === item?.value }"
-      (click)="oItemSelect.emit(item)"
-    >
-      {{ item.label }}
-    </li>
-  </ng-container>
-
-  <ng-container *ngIf="!iListItems.length && iLoadingItems">
+  <ng-container *ngIf="iLoadingItems; else showItems">
     <li class="py-1.5 px-2 flex justify-between items-center cursor-pointer">
       <p class="">{{iMessageLoading}}</p>
       <svg class="animate-spin h-6 w-6 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -22,8 +14,21 @@
       </svg>
     </li>
   </ng-container>
-
-  <ng-container *ngIf="!iListItems.length && !iLoadingItems">
-    <li class="py-1.5 px-2 cursor-pointer rounded">{{ iMessageNothingFound }}</li>
-  </ng-container>
+  <ng-template #showItems>
+    <ng-container *ngIf="iListLength > 0">
+      <ng-content></ng-content>
+    </ng-container>
+    <ng-container *ngIf="!iListLength && !iButtonText">
+      <li class="no-border-top" [attr.id]="'no-results-found-item'">
+        {{ iMessageNothingFound }}
+      </li>
+    </ng-container>
+    <div
+      class="button-wrapper"
+      [ngClass]="{ 'border-t-2': iListLength > 0 }"
+      *ngIf="iButtonText"
+    >
+      <button (oClick)="oButtonClick.emit(null)">{{iButtonText}}</button>
+    </div>
+  </ng-template>
 </ul>

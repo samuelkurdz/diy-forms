@@ -1,0 +1,21 @@
+<li
+  class="list-item py-1.5 px-2 cursor-pointer hover:bg-slate-100 rounded"
+  role="option"
+  #listBoxItem
+  [attr.data-listbox-item]="iIndex"
+  [attr.aria-selected]="iIsSelected"
+  [ngClass]="{ 'no-border-top': iIndex === 0 }"
+  (click)="select()"
+>
+  <ng-container *ngIf="iCustomTemplate; else defaultTemplate">
+    <ng-content></ng-content>
+  </ng-container>
+  <ng-template #defaultTemplate>
+    <span>
+      {{ iItem.label }}
+    </span>
+    <svg aria-hidden="true" class="w-5 h-5 inline-block" *ngIf="iIsSelected">
+      <use xlink:href="assets/sprite.svg#round-check"></use>
+    </svg>
+  </ng-template>
+</li>

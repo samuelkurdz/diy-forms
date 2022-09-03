@@ -1,21 +1,26 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListboxComponent } from '../listbox/listbox.component';
 import { ListBoxitem } from '@core';
+import { SharedModule } from '@shared';
+import { ListboxComponent, ListboxItemComponent } from '../list';
+
 
 @Component({
   selector: 'diy-dropdown',
   standalone: true,
-  imports: [CommonModule, ListboxComponent],
+  imports: [CommonModule, ListboxComponent, ListboxItemComponent, SharedModule],
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownComponent {
 
+  @Input() iId: string;
+  @Input() iLoadingItems: boolean;
   @Input() iPlaceholder: string = "Select an option";
-  isListOpen = true;
-  selectedItem: ListBoxitem | undefined = undefined;
+
+  isListOpen = false;
+  iSelected: ListBoxitem = { value: '1', label: 'One' };
   items: ListBoxitem[] = [
     { value: '1', label: 'One' },
     { value: '2', label: 'Two' },
@@ -31,5 +36,8 @@ export class DropdownComponent {
 
   constructor() { }
 
+  select(eve: any) {
+    this.iSelected = eve;
+  }
 
 }

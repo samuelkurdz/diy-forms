@@ -1,19 +1,62 @@
-<div>
+<div class="dropdown-wrapper" #comboboxWrapper [diyAriaActiveDescendant]="iId">
   <button
+    [attr.id]="iId"
     type="button"
     tabindex="-1"
     (click)="isListOpen = !isListOpen"
-    class="py-2 px-3 w-full bg-indigo-600 text-white text-sm font-bold rounded-md shadow focus:outline-none"
+    class="mb-2 flex justify-between text-base py-2 px-3 w-full border border-slate-300 bg-white text-gray-900 font-bold rounded-md shadow focus:outline-none"
   >
-    {{ selectedItem?.label || iPlaceholder }}
+    {{ iSelected.label || iPlaceholder }}
+    <svg class="w-5 h-5">
+      <use xlink:href="assets/sprite.svg#chevron-dropdown"></use>
+    </svg>
   </button>
+
+  <diy-listbox
+    [iId]="iId"
+    [iLabelledBy]="'iLabelledBy'"
+    [iOpen]="isListOpen"
+    [iLoadingItems]="iLoadingItems"
+    [iListLength]="items.length"
+    (oButtonClick)="select('click')"
+  >
+    <diy-listbox-item
+      *ngFor="let item of items; let i = index"
+      [iIndex]="i"
+      [iItem]="item"
+      [iIsSelected]="iSelected && iSelected.value === item.value"
+      (oSelect)="select($event)"
+    >
+    </diy-listbox-item>
+  </diy-listbox>
 </div>
-<diy-listbox
-  [iOpen]="isListOpen"
-  [iListItems]="items"
-  [iLoadingItems]="true"
-  [selectedItem]="selectedItem"
-  (oCloseList)="isListOpen = false"
-  (oItemSelect)="selectedItem = $event"
-  [iMessageNothingFound]="'No Items to select from'"
-></diy-listbox>
+
+<!-- <ul
+  #listBoxContainer
+  *ngIf="iOpen"
+  class="py-2 px-2 space-y-0.5 font-medium bg-white text-slate-700 border border-slate-300 rounded-md shadow-md max-h-40 overflow-y-auto"
+>
+  <ng-container *ngFor="let item of iListItems">
+    <li
+      class="py-1.5 px-2 cursor-pointer hover:bg-slate-100 rounded"
+      [ngClass]="{ 'selected': selectedItem?.value === item?.value }"
+      (click)="oItemSelect.emit(item)"
+    >
+      {{ item.label }}
+    </li>
+  </ng-container>
+
+  <ng-container *ngIf="!iListItems.length && iLoadingItems">
+    <li class="py-1.5 px-2 flex justify-between items-center cursor-pointer">
+      <p class="">{{iMessageLoading}}</p>
+      <svg class="animate-spin h-6 w-6 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+    </li>
+  </ng-container>
+
+  <ng-container *ngIf="!iListItems.length && !iLoadingItems">
+    <li class="py-1.5 px-2 cursor-pointer rounded">{{ iMessageNothingFound }}</li>
+  </ng-container>
+</ul> -->
