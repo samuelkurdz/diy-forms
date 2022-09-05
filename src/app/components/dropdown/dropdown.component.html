@@ -6,7 +6,7 @@
     (click)="isListOpen = !isListOpen"
     class="mb-1.5 flex items-center justify-between py-2 px-3 w-full border border-slate-300 bg-white text-gray-900 font-bold rounded-md shadow focus:outline-none"
   >
-    {{ iSelected.label || iPlaceholder }}
+    {{ iSelected?.label || iPlaceholder }}
     <span class="text-gray-400">
       <svg class="w-5 h-5">
         <use xlink:href="assets/sprite.svg#chevron-dropdown"></use>
@@ -20,13 +20,13 @@
     [iOpen]="isListOpen"
     [iLoadingItems]="iLoadingItems"
     [iListLength]="items.length"
-    (oButtonClick)="select('click')"
+    (oButtonClick)="buttonClick()"
   >
     <diy-listbox-item
       *ngFor="let item of items; let i = index"
       [iIndex]="i"
       [iItem]="item"
-      [iIsSelected]="iSelected && iSelected.value === item.value"
+      [iIsSelected]="!!iSelected && iSelected.value === item.value"
       (oSelect)="select($event)"
     >
     </diy-listbox-item>

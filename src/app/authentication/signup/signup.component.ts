@@ -41,6 +41,25 @@ export class SignupComponent {
           "minLength": 8,
         }
       },
+      {
+        name: "gender",
+        label: "Gender",
+        value: "",
+        type: "dropdown",
+        options: [
+          {
+            label: "Male",
+            value: "male"
+          },
+          {
+            label: "Female",
+            value: "female"
+          }
+        ],
+        validators: {
+          "required": true,
+        }
+      },
     ],
     formValidators: {
       passwordMatch: true,

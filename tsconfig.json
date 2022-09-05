@@ -26,6 +26,7 @@
     "paths": {
       "@core": ["src/app/core"],
       "@shared": ["src/app/shared"],
+      "@components": ["src/app/components"],
 
       // "@pipes": ["src/app/core/pipes"],
     },

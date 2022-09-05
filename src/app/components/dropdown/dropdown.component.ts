@@ -1,8 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListBoxitem } from '@core';
 import { SharedModule } from '@shared';
 import { ListboxComponent, ListboxItemComponent } from '../list';
+import { FormGroup, AbstractControl } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -13,31 +15,42 @@ import { ListboxComponent, ListboxItemComponent } from '../list';
   styleUrls: ['./dropdown.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DropdownComponent {
+export class DropdownComponent implements OnInit {
 
   @Input() iId: string;
   @Input() iLoadingItems: boolean;
   @Input() iPlaceholder: string = "Select an option";
 
+  @Input() iFormGroup: FormGroup;
+	@Input() iFormControlName: string;
+	@Input() items: ListBoxitem[] = [];
+	@Input() iSelected: ListBoxitem | undefined = undefined;
+
+
+  formControl: AbstractControl;
+  destroy$: Subject<boolean> = new Subject<boolean>();
+
   isListOpen = false;
-  iSelected: ListBoxitem = { value: '1', label: 'One' };
-  items: ListBoxitem[] = [
-    { value: '1', label: 'One' },
-    { value: '2', label: 'Two' },
-    { value: '3', label: 'Three' },
-    { value: '4', label: 'Four' },
-    { value: '5', label: 'Five' },
-    { value: '6', label: 'Six' },
-    { value: '7', label: 'Seven' },
-    { value: '8', label: 'Eight' },
-    { value: '9', label: 'Nine' },
-  ];
 
 
   constructor() { }
 
-  select(eve: any) {
+  ngOnInit() {
+    this.formControl = this.iFormGroup.controls[this.iFormControlName];
+	}
+
+  select(eve: ListBoxitem) {
     this.iSelected = eve;
+    this.closeListBox();
+  }
+
+  closeListBox() {
+		this.isListOpen = false;
+		this.formControl.setValue(this.iSelected?.value || null);
+	}
+
+  buttonClick() {
+    console.log("button");
   }
 
 }

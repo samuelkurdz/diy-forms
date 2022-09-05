@@ -1,3 +1,5 @@
+import { ListBoxitem } from ".";
+
 export interface IFormData {
   controls: IFormControl[];
   formValidators?: FormValidators;
@@ -12,10 +14,15 @@ export interface IFormControl {
   label: string;
   value: string;
   placeholder?: string;
-  type: "email" | "password" | "text" | "number";
+  type: "email" | "password" | "text" | "number" | "dropdown";
   validators: IFormValidators;
-  // options?: IFormControlOptions;
+  options?: ListBoxitem[];
 }
+
+// export interface IDropdownFormControl extends IFormControl {
+//   type: "dropdown";
+//   options: ListBoxitem[];
+// }
 
 export interface IFormValidators {
   min?: number;
@@ -28,10 +35,3 @@ export interface IFormValidators {
   pattern?: string;
   nullValidator?: boolean;
 }
-
-// export interface IFormControlOptions {
-//   min?: string;
-//   max?: string;
-//   step?: string;
-//   icon?: string;
-// }

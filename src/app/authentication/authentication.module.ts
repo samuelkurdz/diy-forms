@@ -7,9 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthContainerComponent } from './auth-container/auth-container.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormInputComponent } from '../components/text-input/text-input.component';
-import { IformComponent } from '../components/iform/iform.component';
-import { DropdownComponent } from '../components/dropdown/dropdown.component';
+import { IformComponent } from '@components';
 
 
 @NgModule({
@@ -20,13 +18,9 @@ import { DropdownComponent } from '../components/dropdown/dropdown.component';
   ],
   imports: [
     CommonModule,
-    FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,
     AuthenticationRoutingModule,
-    FormInputComponent,
     IformComponent,
-    DropdownComponent
   ]
 })
 export class AuthenticationModule { }

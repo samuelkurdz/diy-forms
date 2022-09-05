@@ -28,7 +28,7 @@ export class ListboxItemComponent implements OnInit, OnChanges {
   @Input() iIndex: number;
   @Input() iActiveIndex: number;
   @Input() iIsSelected: boolean;
-  @Output() oSelect: EventEmitter<ListBoxitem | any> = new EventEmitter();
+  @Output() oSelect = new EventEmitter<ListBoxitem>();
   @ViewChild("listBoxItem", { static: true }) listBoxItem: ElementRef;
 
   @HostBinding("class.selected") isActive: boolean = false;

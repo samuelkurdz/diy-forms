@@ -4,11 +4,12 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErr
 import { IFormControl, IFormData, matchingControlsValidator } from '@core';
 import { FormInputComponent } from '../text-input/text-input.component';
 import { FormLabelComponent } from '../form-label/form-label.component';
+import { DropdownComponent } from '../dropdown/dropdown.component';
 
 @Component({
   selector: 'diy-iform',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, FormInputComponent, FormLabelComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, FormInputComponent, DropdownComponent, FormLabelComponent],
   templateUrl: './iform.component.html',
   styleUrls: ['./iform.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

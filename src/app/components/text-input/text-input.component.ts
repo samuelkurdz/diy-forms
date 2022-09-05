@@ -24,8 +24,9 @@ export class FormInputComponent implements OnInit, OnDestroy {
   @Input() iType: IFormControl["type"] = "text";
   @Input() iPlaceholder: string | undefined = undefined;
 
-  destroy$: Subject<boolean> = new Subject<boolean>();
   formControl: AbstractControl;
+  destroy$: Subject<boolean> = new Subject<boolean>();
+
   get showError(): boolean {
     return this.formControl.invalid && this.formControl.touched;
   }

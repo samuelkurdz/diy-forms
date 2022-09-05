@@ -6,20 +6,32 @@
   #iFormGroupRef="ngForm"
 >
   <ng-container *ngFor="let control of iFormData?.controls">
-    <div class="">
+    <div class="" [ngSwitch]="control.type">
       <diy-form-label
         [iFormGroup]="iFormGroup"
         [iFor]="control.name"
         [iTitle]="control.label"
         [iFormControlName]="control.name"
       ></diy-form-label>
-      <diy-text-input
-        [iId]="control.name"
-        [iType]="control.type"
-        [iFormGroup]="iFormGroup"
-        [iFormControlName]="control.name"
-      >
-      </diy-text-input>
+      <ng-container *ngSwitchCase="'dropdown'">
+        <diy-dropdown
+          iId="signup-dropdown"
+          [iPlaceholder]="'Select your gender'"
+          [iFormGroup]="iFormGroup"
+          [iFormControlName]="control.name"
+          [items]="control.options ? control.options : []"
+        >
+        </diy-dropdown>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <diy-text-input
+          [iId]="control.name"
+          [iType]="control.type"
+          [iFormGroup]="iFormGroup"
+          [iFormControlName]="control.name"
+        >
+        </diy-text-input>
+      </ng-container>
     </div>
   </ng-container>
 

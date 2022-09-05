@@ -1,10 +1,10 @@
 <li
-  class="list-item py-1.5 px-2 cursor-pointer hover:bg-slate-100 rounded"
-  role="option"
   #listBoxItem
+  role="option"
+  class="list-item py-1.5 px-2 cursor-pointer hover:bg-slate-100 rounded"
   [attr.data-listbox-item]="iIndex"
   [attr.aria-selected]="iIsSelected"
-  [ngClass]="{ 'no-border-top': iIndex === 0 }"
+  [ngClass]="{ 'font-semibold': iIsSelected }"
   (click)="select()"
 >
   <ng-container *ngIf="iCustomTemplate; else defaultTemplate">
