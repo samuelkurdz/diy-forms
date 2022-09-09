@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IFormData } from '@core';
+import { IFormData, themes } from '@core';
 
 @Component({
   selector: 'diy-login',
@@ -8,6 +8,7 @@ import { IFormData } from '@core';
 })
 export class LoginComponent {
   isFormValid: boolean;
+  themesData = themes;
   loginFormControls: IFormData = {
     controls: [
       {
@@ -36,6 +37,9 @@ export class LoginComponent {
 
   constructor( ) { }
 
+  switchTheme(theme: string): void {
+    document.body.setAttribute("data-theme", theme);
+  }
   login(loginValues: Record<string, any>): void {
     console.log(loginValues);
     console.log(this.isFormValid);

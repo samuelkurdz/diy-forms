@@ -5,7 +5,30 @@
 </div>
 
 <diy-iform
+  formControlGap="small"
   [iFormData]="loginFormControls"
   (oFormSubmit)="login($event)"
   (isIFormValid)="isFormValid = $event"
 ></diy-iform>
+
+<section class="mt-5 space-x-3">
+  <ng-container *ngFor="let theme of themesData">
+    <diy-button iStyle="light-contained" iType="button" (click)="switchTheme(theme.value)">
+      {{ theme.name }}
+    </diy-button>
+  </ng-container>
+</section>
+<section class="mt-5 space-x-3">
+  <ng-container *ngFor="let theme of themesData">
+    <diy-button iStyle="contained" iType="button" (click)="switchTheme(theme.value)">
+      {{ theme.name }}
+    </diy-button>
+  </ng-container>
+</section>
+<section class="mt-5 space-x-3">
+  <ng-container *ngFor="let theme of themesData">
+    <diy-button iStyle="outlined" iType="button" (click)="switchTheme(theme.value)">
+      {{ theme.name }}
+    </diy-button>
+  </ng-container>
+</section>

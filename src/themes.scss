@@ -1,0 +1,68 @@
+@layer base {
+  :root {
+    /* indigo */
+    --color-primary-lighter: #e0e7ff; /* -100 */
+    --color-primary-light: #c7d2fe; /* -200 */
+    --color-primary-ring: #6366f1; /* -500 */
+    --color-primary: #4f46e5; /* -600 */
+    --color-primary-darker: #4338ca; /* -700 */
+
+    /* gray-scale */
+    --color-gray-900: #111827; /* gray/900 */
+    --color-gray-700: #374151; /* gray/700 */
+    --color-gray-500: #6b7280; /* gray/500 */
+    --color-gray-300: #d1d5db; /* gray/300 */
+    --color-gray-200: #e5e7eb; /* gray/200 */
+    // --color-gray-100: #f3f4f6; /* gray/100 */
+
+    /* red (error-scale) */
+    --color-error: #ef4444; /* -500 */
+    --color-error-lighter: #fca5a5; /* -300 */
+    --color-error-darker: #b91c1c; /* -700 */
+  }
+
+  [data-theme="barbie"] {
+    /* pink */
+    --color-primary-lighter: #fce7f3; /* -100 */
+    --color-primary-light: #fbcfe8; /* -200 */
+    --color-primary-ring: #ec4899; /* -500 */
+    --color-primary: #db2777; /* -600 */
+    --color-primary-darker: #be123c; /* -700 */
+  }
+
+  [data-theme="emrald"] {
+    /* emrald */
+    --color-primary-lighter: #d1fae5; /* -100 */
+    --color-primary-light: #a7f3d0; /* -200 */
+    --color-primary-ring: #10b981; /* -500 */
+    --color-primary: #059669; /* -600 */
+    --color-primary-darker: #047857; /* -700 */
+  }
+
+  [data-theme="fuchsia"] {
+    /* fuchsia */
+    --color-primary-lighter: #fae8ff; /* -100 */
+    --color-primary-light: #f5d0fe; /* -200 */
+    --color-primary-ring: #d946ef; /* -500 */
+    --color-primary: #c026d3; /* -600 */
+    --color-primary-darker: #a21caf; /* -700 */
+  }
+
+  [data-theme="lime"] {
+    /* lime */
+    --color-primary-lighter: #ecfccb; /* -100 */
+    --color-primary-light: #d9f99d; /* -200 */
+    --color-primary-ring: #84cc16; /* -500 */
+    --color-primary: #65a30d; /* -600 */
+    --color-primary-darker: #4d7c0f; /* -700 */
+  }
+
+  [data-theme="slate"] {
+    /* zinc */
+    --color-primary-lighter: #f1f5f9; /* -100 */
+    --color-primary-light: #e2e8f0; /* -200 */
+    --color-primary-ring: #64748b; /* -500 */
+    --color-primary: #475569; /* -600 */
+    --color-primary-darker: #334155; /* -700 */
+  }
+}

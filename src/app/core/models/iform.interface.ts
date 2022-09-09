@@ -1,30 +1,35 @@
 import { ListBoxitem } from ".";
 
-export interface IFormData {
+export type IFormData = {
+  formName?: string;
   controls: IFormControl[];
   formValidators?: FormValidators;
 }
 
-export interface FormValidators {
+export type FormValidators = {
   passwordMatch: true,
 }
 
-export interface IFormControl {
+export type IFormControl = {
   name: string;
   label: string;
-  value: string;
   placeholder?: string;
-  type: "email" | "password" | "text" | "number" | "dropdown";
   validators: IFormValidators;
-  options?: ListBoxitem[];
+} & IControlType;
+
+export type IControlType = IGeneralType | IDropdownType;
+
+export type IGeneralType = {
+  value: string;
+  type: "email" | "password" | "text" | "number";
+}
+export type IDropdownType = {
+  type: "dropdown";
+  value?: ListBoxitem;
+  options: ListBoxitem[];
 }
 
-// export interface IDropdownFormControl extends IFormControl {
-//   type: "dropdown";
-//   options: ListBoxitem[];
-// }
-
-export interface IFormValidators {
+export type IFormValidators = {
   min?: number;
   max?: number;
   required?: boolean;

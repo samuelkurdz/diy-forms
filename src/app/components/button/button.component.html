@@ -1,1 +1,67 @@
-<p>button works!</p>
+<ng-container *ngIf="iType !== 'a'">
+  <button
+    class="{{ iStyle }} {{ iSize }} {{ iThemeColor }}"
+    [ngClass]="{ processing: iShowSpinner, 'w-full': iFull }"
+    [attr.type]="iType"
+    [disabled]="iDisabled || iState !== 'default' || iShowSpinner"
+    [attr.aria-label]="iAriaLabel"
+    [attr.id]="iId"
+    (focus)="oFocus.emit($event)"
+    (blur)="oBlur.emit($event)"
+    (mouseover)="oMouseOver.emit($event)"
+    (mouseout)="oMouseOut.emit($event)"
+    (click)="oClick.emit($event)"
+  >
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </button>
+</ng-container>
+<ng-container *ngIf="iType === 'a' && iRouterLink && !iLink">
+  <a
+    class="{{ iStyle }} {{ iSize }} {{ iThemeColor }}"
+    target="{{ iTarget }}"
+    [ngClass]="{ disabled: iDisabled || iState !== 'default' }"
+    [routerLink]="iRouterLink"
+    [queryParams]="iQueryParams"
+    [preserveFragment]="iPreserveFragment"
+    [attr.aria-label]="iAriaLabel"
+    [attr.id]="iId"
+    (focus)="oFocus.emit($event)"
+    (blur)="oBlur.emit($event)"
+    (mouseover)="oMouseOver.emit($event)"
+    (mouseout)="oMouseOut.emit($event)"
+    (click)="oClick.emit($event)"
+  >
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </a>
+</ng-container>
+<ng-container *ngIf="iType === 'a' && !iRouterLink && iLink">
+  <a
+    class="{{ iStyle }} {{ iSize }} {{ iThemeColor }}"
+    target="{{ iTarget }}"
+    [ngClass]="{ disabled: iDisabled || iState !== 'default' }"
+    [attr.href]="iLink"
+    [attr.aria-label]="iAriaLabel"
+    [attr.id]="iId"
+    (focus)="oFocus.emit($event)"
+    (blur)="oBlur.emit($event)"
+    (mouseover)="oMouseOver.emit($event)"
+    (mouseout)="oMouseOut.emit($event)"
+    (click)="oClick.emit($event)"
+  >
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </a>
+</ng-container>
+
+<ng-template #content>
+  <span [ngClass]="{ content: iShowSpinner }">
+    <span class="icon" *ngIf="iIconLeft"> </span>
+    <ng-content> </ng-content>
+  </span>
+  <span class="processing-icon" *ngIf="iShowSpinner">
+    <!-- <app-spinner
+			[iColor]="spinnerColor"
+			[iSize]="iSize === 'large' ? 'lg' : iSize === 'small' ? 'sm' : 'md'"
+		>
+		</app-spinner> -->
+  </span>
+</ng-template>

@@ -1,36 +1,46 @@
 <form
-  class="space-y-4"
+  [ngClass]="{
+    'space-y-5': formControlGap === 'small',
+    'space-y-9': formControlGap === 'medium',
+    'space-y-12': formControlGap === 'large'
+  }"
   *ngIf="isFormReady"
   [formGroup]="iFormGroup"
   (ngSubmit)="onSubmit()"
   #iFormGroupRef="ngForm"
 >
   <ng-container *ngFor="let control of iFormData?.controls">
-    <div class="" [ngSwitch]="control.type">
+    <div class="">
       <diy-form-label
-        [iFormGroup]="iFormGroup"
-        [iFor]="control.name"
+        [iFor]="
+          control.type === 'dropdown'
+            ? iFormData.formName + '-' + control.name + '-dropdown'
+            : control.name
+        "
         [iTitle]="control.label"
+        [iFormGroup]="iFormGroup"
         [iFormControlName]="control.name"
       ></diy-form-label>
-      <ng-container *ngSwitchCase="'dropdown'">
+      <ng-container *ngIf="control.type === 'dropdown'">
         <diy-dropdown
-          iId="signup-dropdown"
-          [iPlaceholder]="'Select your gender'"
           [iFormGroup]="iFormGroup"
+          [iSelected]="control.value"
           [iFormControlName]="control.name"
+          [iPlaceholder]="control.placeholder"
+          [iId]="iFormData.formName + '-' + control.name + '-dropdown'"
           [items]="control.options ? control.options : []"
         >
         </diy-dropdown>
       </ng-container>
-      <ng-container *ngSwitchDefault>
-        <diy-text-input
+      <ng-container *ngIf="control.type !== 'dropdown'">
+        <diy-form-input
           [iId]="control.name"
           [iType]="control.type"
           [iFormGroup]="iFormGroup"
           [iFormControlName]="control.name"
+          [iPlaceholder]="control.placeholder"
         >
-        </diy-text-input>
+        </diy-form-input>
       </ng-container>
     </div>
   </ng-container>
@@ -40,12 +50,16 @@
     <!-- {{ iFormGroup.errors | json }} -->
     <span
       role="alert"
-      class="text-red-600 text-xs block"
+      class="text-error text-xs block"
       *ngIf="iFormGroup.errors['passwordMismatch']"
     >
       Passwords do not match
     </span>
   </ng-container>
 
-  <button type="submit">Submit</button>
+  <div>
+    <diy-button iStyle="contained" [iFull]="true" iType="submit">
+      Save
+    </diy-button>
+  </div>
 </form>

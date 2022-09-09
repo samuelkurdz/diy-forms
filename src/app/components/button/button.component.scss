@@ -1,0 +1,14 @@
+button {
+  @apply py-1.5 px-4 shadow-sm rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-offset-white;
+  
+  &.contained {
+    @apply bg-primary hover:bg-primary-darker text-white focus:ring-primary-ring;
+  }
+
+  &.light-contained {
+    @apply bg-primary-lighter hover:bg-primary-light text-primary-darker focus:ring-primary-ring;
+  }
+  &.outlined {
+    @apply bg-white text-primary border border-gray-300 focus:ring-primary-ring;
+  }
+}

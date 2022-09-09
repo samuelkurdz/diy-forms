@@ -1,4 +1,4 @@
-export interface ListBoxitem {
+export type ListBoxitem = {
 	value: any;
 	label: string;
 }

@@ -4,10 +4,23 @@
     type="button"
     tabindex="-1"
     (click)="isListOpen = !isListOpen"
-    class="mb-1.5 flex items-center justify-between py-2 px-3 w-full border border-slate-300 bg-white text-gray-900 font-bold rounded-md shadow focus:outline-none"
+    class="mb-1.5 flex items-center justify-between py-2 px-3 w-full border border-gray-300 bg-white text-gray-900 font-bold rounded-md shadow focus:outline-none"
+    [ngClass]="{
+      'border-error text-error focus:border-error': showError,
+      'border-gray-300 text-black focus:border-indigo-500': !showError
+    }"
   >
     {{ iSelected?.label || iPlaceholder }}
-    <span class="text-gray-400">
+    <span
+      class="flex gap-1.5 items-center"
+      [ngClass]="{
+        'text-error': showError,
+        'text-gray-500': !showError
+      }"
+    >
+      <svg class="w-5 h-5" *ngIf="iSelected" (click)="deselectValue($event)">
+        <use xlink:href="assets/sprite.svg#solid-cancel"></use>
+      </svg>
       <svg class="w-5 h-5">
         <use xlink:href="assets/sprite.svg#chevron-dropdown"></use>
       </svg>

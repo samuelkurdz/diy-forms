@@ -4,6 +4,8 @@
 @import "tailwindcss/utilities";
 @import "./avenir/font.scss";
 
+@import "./themes.scss";
+
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +15,7 @@
 html {
   // font-family: 'Inter', sans-serif;
   font-family: 'Avenir', sans-serif;
-  font-size: 16px
+  font-size: 16px;
 }
 
 
@@ -22,7 +24,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-  @apply text-green-600 hover:underline;
+  @apply text-primary hover:underline;
 }
 
 [type="text"]:focus,

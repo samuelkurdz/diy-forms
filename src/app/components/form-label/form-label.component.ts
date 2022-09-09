@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AbstractControl, FormGroup } from '@angular/forms';
 
@@ -7,14 +7,19 @@ import { AbstractControl, FormGroup } from '@angular/forms';
   standalone: true,
   imports: [CommonModule],
   template: `
-		<div>
-			<label [attr.id]="iId" [attr.for]="iFor">
+		  <label
+        [attr.id]="iId"
+        [attr.for]="iFor"
+        [ngClass]="{
+          'invalid': this.formControl.invalid,
+          'touched': this.formControl.touched,
+          'dirty': this.formControl.dirty
+        }"
+      >
         {{ iTitle }}
       </label>
-		</div>
   `,
   styleUrls: ['./form-label.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormLabelComponent implements OnInit {
 
@@ -25,6 +30,10 @@ export class FormLabelComponent implements OnInit {
   @Input() iId: string;
   @Input() iTitle: string;
   @Input() iWrapClasses: string | null = null;
+
+  get showError(): boolean {
+    return this.formControl.invalid && this.formControl.touched;
+  }
 
   ngOnInit() {
     this.formControl = this.iFormGroup.controls[this.iFormControlName];

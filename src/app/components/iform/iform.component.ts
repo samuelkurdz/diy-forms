@@ -1,20 +1,22 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { IFormControl, IFormData, matchingControlsValidator } from '@core';
 import { FormInputComponent } from '../text-input/text-input.component';
 import { FormLabelComponent } from '../form-label/form-label.component';
 import { DropdownComponent } from '../dropdown/dropdown.component';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'diy-iform',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, FormInputComponent, DropdownComponent, FormLabelComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, FormInputComponent, DropdownComponent, FormLabelComponent, ButtonComponent],
   templateUrl: './iform.component.html',
   styleUrls: ['./iform.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IformComponent implements OnChanges {
+  @Input() formControlGap: 'small' | 'medium' | 'large' = 'medium';
   @Input() iFormData: IFormData;
   @Output() isIFormValid = new EventEmitter<boolean>();
   @Output() oFormSubmit = new EventEmitter<Record<string, any>>();
@@ -55,8 +57,8 @@ export class IformComponent implements OnChanges {
   }
 
   private processControlValidators(control: IFormControl): ValidatorFn[] {
-    const validatorsToAdd = [];
-    for (const [key, value] of Object.entries(control.validators)) {
+    const validatorsToAdd: ValidatorFn[] = [];
+    for (const [key, value] of Object.entries<any>(control.validators)) {
       switch (key) {
         case 'min':
           validatorsToAdd.push(Validators.min(value));
@@ -101,6 +103,7 @@ export class IformComponent implements OnChanges {
   }
 
   onSubmit() {
+    // console.log(this.iFormGroup.controls['gender'].errors);
     this.isIFormValid.emit(this.iFormGroup.valid);
     this.oFormSubmit.emit(this.iFormGroup.value);
   }

@@ -10,6 +10,7 @@ export class SignupComponent {
 
   isFormValid: boolean;
   signUpFormControls: IFormData = {
+    formName: "signup",
     controls: [
       {
         name: "email",
@@ -44,7 +45,7 @@ export class SignupComponent {
       {
         name: "gender",
         label: "Gender",
-        value: "",
+        placeholder: 'Select your gender',
         type: "dropdown",
         options: [
           {
@@ -67,7 +68,7 @@ export class SignupComponent {
   };
 
 
-  constructor( ) { }
+  constructor() { }
 
   signUp(signUpValues: Record<string, any>): void {
     console.log(signUpValues);

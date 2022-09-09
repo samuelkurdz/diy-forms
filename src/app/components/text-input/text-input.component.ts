@@ -7,7 +7,7 @@ import { IFormControl } from '@core';
 
 
 @Component({
-  selector: 'diy-text-input[iFormGroup][iFormControlName]',
+  selector: 'diy-form-input[iFormGroup][iFormControlName]',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, FormErrorComponent],
   templateUrl: './text-input.component.html',
@@ -28,7 +28,7 @@ export class FormInputComponent implements OnInit, OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   get showError(): boolean {
-    return this.formControl.invalid && this.formControl.touched;
+    return this.formControl.invalid && this.formControl.touched && this.formControl.dirty;
   }
 
   constructor(

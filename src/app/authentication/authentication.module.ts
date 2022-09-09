@@ -6,8 +6,7 @@ import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthContainerComponent } from './auth-container/auth-container.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IformComponent } from '@components';
+import { ButtonComponent, IformComponent } from '@components';
 
 
 @NgModule({
@@ -21,6 +20,7 @@ import { IformComponent } from '@components';
     HttpClientModule,
     AuthenticationRoutingModule,
     IformComponent,
+    ButtonComponent
   ]
 })
 export class AuthenticationModule { }
