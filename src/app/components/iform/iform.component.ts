@@ -4,13 +4,13 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, 
 import { IFormControl, IFormData, matchingControlsValidator } from '@core';
 import { FormInputComponent } from '../text-input/text-input.component';
 import { FormLabelComponent } from '../form-label/form-label.component';
-import { DropdownComponent } from '../dropdown/dropdown.component';
+import { SelectMenuComponent } from '../select-menu/select-menu.component';
 import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'diy-iform',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, FormInputComponent, DropdownComponent, FormLabelComponent, ButtonComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, FormInputComponent, SelectMenuComponent, FormLabelComponent, ButtonComponent],
   templateUrl: './iform.component.html',
   styleUrls: ['./iform.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

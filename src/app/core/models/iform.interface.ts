@@ -17,14 +17,14 @@ export type IFormControl = {
   validators: IFormValidators;
 } & IControlType;
 
-export type IControlType = IGeneralType | IDropdownType;
+export type IControlType = IGeneralType | ISelectMenuType;
 
 export type IGeneralType = {
   value: string;
   type: "email" | "password" | "text" | "number";
 }
-export type IDropdownType = {
-  type: "dropdown";
+export type ISelectMenuType = {
+  type: "select-menu";
   value?: ListBoxitem;
   options: ListBoxitem[];
 }

@@ -8,10 +8,15 @@ const routes: Routes = [
     .then(m => m.AuthenticationModule)
   },
   {
+    path: "account",
+    loadChildren: () => import('./pages/account/account.module')
+    .then(m => m.AccountModule)
+  },
+  {
     path: "",
     pathMatch: "full",
-    loadComponent: () => import('./landing-page/landing-page.component')
-      .then(m => m.LandingPageComponent,)
+    loadComponent: () => import('./pages/landing-page/landing-page.component')
+      .then(m => m.LandingPageComponent)
   },
 ];
 

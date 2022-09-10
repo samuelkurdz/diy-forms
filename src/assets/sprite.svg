@@ -6,7 +6,7 @@
     </symbol>
 
 
-    <symbol id="chevron-dropdown" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="chevron-select-menu" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M10 3C10.2652 3 10.5196 3.10536 10.7071 3.29289L13.7071 6.29289C14.0977 6.68342 14.0977 7.31658 13.7071 7.70711C13.3166 8.09763 12.6834 8.09763 12.2929 7.70711L10 5.41421L7.70714 7.70711C7.31661 8.09763 6.68345 8.09763 6.29292 7.70711C5.9024 7.31658 5.9024 6.68342 6.29292 6.29289L9.29292 3.29289C9.48046 3.10536 9.73481 3 10 3ZM6.29292 12.2929C6.68345 11.9024 7.31661 11.9024 7.70714 12.2929L10 14.5858L12.2929 12.2929C12.6834 11.9024 13.3166 11.9024 13.7071 12.2929C14.0977 12.6834 14.0977 13.3166 13.7071 13.7071L10.7071 16.7071C10.3166 17.0976 9.68345 17.0976 9.29292 16.7071L6.29292 13.7071C5.9024 13.3166 5.9024 12.6834 6.29292 12.2929Z" fill="currentColor"/>
     </symbol>
 
@@ -22,5 +22,12 @@
       <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
     </symbol>
 
+    <svg id="close-hamburger-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+    </svg>
+
+    <svg id="open-hamburger-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
   </defs>
 </svg>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IFormData, themes } from '@core';
 
 @Component({
@@ -35,7 +36,9 @@ export class LoginComponent {
   };
 
 
-  constructor( ) { }
+  constructor(
+    private router: Router
+  ) { }
 
   switchTheme(theme: string): void {
     document.body.setAttribute("data-theme", theme);
@@ -43,6 +46,9 @@ export class LoginComponent {
   login(loginValues: Record<string, any>): void {
     console.log(loginValues);
     console.log(this.isFormValid);
+    if (this.isFormValid) {
+      this.router.navigate(['/account']);
+    }
     // console.log(this.signUpForm.controls.confirmPassword.errors);
   }
 }

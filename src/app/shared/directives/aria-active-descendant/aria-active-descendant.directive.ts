@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Directive, Inject, Input, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[diyAriaActiveDescendant]'
+  selector: '[diyAriaActiveDescendant]',
 })
 export class AriaActiveDescendantDirective {
   

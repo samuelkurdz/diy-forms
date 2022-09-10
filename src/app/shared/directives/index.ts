@@ -1,1 +1,1 @@
-export * from "./aria-active-descendant.directive";
+export * from "./aria-active-descendant";

@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AriaActiveDescendantDirective } from './directives';
+import { NavigationModule } from './navigation/navigation.module';
 
 
 
 @NgModule({
   declarations: [
-    AriaActiveDescendantDirective
+
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NavigationModule,
   ],
   exports: [
-    AriaActiveDescendantDirective
+    NavigationModule,
   ]
 })
 export class SharedModule { }

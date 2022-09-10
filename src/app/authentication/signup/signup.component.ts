@@ -46,7 +46,7 @@ export class SignupComponent {
         name: "gender",
         label: "Gender",
         placeholder: 'Select your gender',
-        type: "dropdown",
+        type: "select-menu",
         options: [
           {
             label: "Male",

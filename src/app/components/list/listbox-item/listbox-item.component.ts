@@ -50,7 +50,9 @@ export class ListboxItemComponent implements OnInit, OnChanges {
     }
   }
 
-  constructor(private appAriaActiveDescendantDirective: AriaActiveDescendantDirective) { }
+  constructor(
+    private appAriaActiveDescendantDirective: AriaActiveDescendantDirective
+  ) { }
 
   ngOnInit() {
     if (this.iActiveIndex === this.iIndex) {

@@ -13,26 +13,26 @@
     <div class="">
       <diy-form-label
         [iFor]="
-          control.type === 'dropdown'
-            ? iFormData.formName + '-' + control.name + '-dropdown'
+          control.type === 'select-menu'
+            ? iFormData.formName + '-' + control.name + '-select-menu'
             : control.name
         "
         [iTitle]="control.label"
         [iFormGroup]="iFormGroup"
         [iFormControlName]="control.name"
       ></diy-form-label>
-      <ng-container *ngIf="control.type === 'dropdown'">
-        <diy-dropdown
+      <ng-container *ngIf="control.type === 'select-menu'">
+        <diy-select-menu
           [iFormGroup]="iFormGroup"
           [iSelected]="control.value"
           [iFormControlName]="control.name"
           [iPlaceholder]="control.placeholder"
-          [iId]="iFormData.formName + '-' + control.name + '-dropdown'"
+          [iId]="iFormData.formName + '-' + control.name + '-select-menu'"
           [items]="control.options ? control.options : []"
         >
-        </diy-dropdown>
+        </diy-select-menu>
       </ng-container>
-      <ng-container *ngIf="control.type !== 'dropdown'">
+      <ng-container *ngIf="control.type !== 'select-menu'">
         <diy-form-input
           [iId]="control.name"
           [iType]="control.type"

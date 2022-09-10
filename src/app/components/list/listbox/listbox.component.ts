@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Inject, Input, OnChanges, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Inject, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { AriaActiveDescendantDirective } from '@shared';
 
@@ -90,7 +90,6 @@ export class ListboxComponent implements OnChanges {
 
 	constructor(
 		@Inject(DOCUMENT) private document: Document,
-		private renderer: Renderer2,
 		private appAriaActiveDescendantDirective: AriaActiveDescendantDirective,
 	) { }
 
